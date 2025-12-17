@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive solar system</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!--font-->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
+    </style>
+</head>
+
+<body>
+    <!--linkin js file-->
+    <script src="js/jsfile.js"></script>
+    <!--head part-->
+    <div class="d-flex head align-items-center justify-content-center">
+        <p class="p1 h1 orbitron">Interactive Solar System</p>
+        <p class="p2 orbitron">Made by: Jokūbas Šemeklis</p>
+    </div>
+    <!--main part-->
+    <div class="main">
+        <canvas id="solarSystem"></canvas>
+        <div class="sidebar">
+            <button class="text-white btn orbitron" id="toggleOrbit">Orbit</button>
+            <button class="text-white btn orbitron" onclick="openPage('sun')">Sun</button>
+            <button class="text-white btn orbitron" onclick="openPage('mercury')">Mercury</button>
+            <button class="text-white btn orbitron" onclick="openPage('venus')">Venus</button>
+            <button class="text-white btn orbitron" onclick="openPage('earth')">Earth</button>
+            <button class="text-white btn orbitron" onclick="openPage('mars')">Mars</button>
+            <button class="text-white btn orbitron" onclick="openPage('jupiter')">Jupiter</button>
+            <button class="text-white btn orbitron" onclick="openPage('saturn')">Saturn</button>
+            <button class="text-white btn orbitron" onclick="openPage('uranus')">Uranus</button>
+            <button class="text-white btn orbitron" onclick="openPage('neptune')">Neptune</button>
+
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.querySelector("canvas");
+        const context = canvas.getContext('2d');
+
+
+        //Sun :)
+        const sun = new Image();
+        sun.src = "img/sunImg.png";
+        let sunWidth = 20;
+        let sunHeight = 20;
+        const sunX = (canvas.width - sunWidth) / 2;
+        const sunY = (canvas.height - sunHeight) / 2;
+        sun.onload = function () {
+            context.drawImage(sun, sunX, sunY, sunWidth, sunHeight);
+            mercuryOrbit();
+        }
+        //Mercury
+        const mercury = new Image();
+        mercury.src = "img/mercuryImg.png";
+        const mercuryWidth = 5;
+        const mercuryHeight = 5;
+        const mercuryOrbitRadius = 15;
+        let mercuryAngle = 0;
+
+        //Venus
+        const venus = new Image();
+        venus.src = "img/venusImg.png";
+        const venusWidth = 6;
+        const venusHeight = 6;
+        const venusOrbitRadius = 25;
+        let venusAngle = 0;
+
+        //Earth
+        const earth = new Image();
+        earth.src = "img/earthImg.png";
+        const earthWidth = 6;
+        const earthHeight = 6;
+        const earthOrbitRadius = 35;
+        let earthAngle = 0;
+
+        //Mars
+        const mars = new Image();
+        mars.src = "img/marsImg.png";
+        const marsStuff = [6, 6, 45]; // [0]- width [1]- height [2]- orbit radius
+        let marsAngle = 0;
+
+        //Jupiter
+        const jupiter = new Image();
+        jupiter.src = "img/jupiterImg.png";
+        const jupiterStuff = {
+            jupiterWidth: 10,
+            jupiterHeight: 10,
+            jupiterOrbitRadius: 65
+        };
+        let jupiterAngle = 0;
+
+        //Saturn
+        const saturn = new Image();
+        saturn.src = "img/saturnImg.png";
+        const saturnStuff = {
+            saturnWidth: 8,
+            saturnHeight: 8,
+            saturnOrbitRadius: 75
+        }
+        let saturnAngle = 0;
+
+        //Uranus
+        const uranus = new Image();
+        uranus.src = "img/uranusImg.png";
+        const uranusWidth = 6;
+        const uranusHeight = 6;
+        const uranusOrbitRadius = 85;
+        let uranusAngle = 0;
+
+        //Neptune
+        const neptune = new Image();
+        neptune.src = "img/neptuneImg.png";
+        const neptuneWidth = 6;
+        const neptuneHeight = 6;
+        const neptuneOrbitRadius = 95;
+        let neptuneAngle = 0;
+
+
+        let animationId = null;
+        let orbiting = false;
+        function draw() {
+            // isvalyti canvas kad nebutu paliktas trail
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            //sun
+            context.drawImage(sun, sunX, sunY, sunWidth, sunHeight);
+            //mercury
+            const mercuryX = sunX + sunWidth / 2 + mercuryOrbitRadius * Math.cos(mercuryAngle) - mercuryWidth / 2;
+            const mercuryY = sunY + sunHeight / 2 + mercuryOrbitRadius * Math.sin(mercuryAngle) - mercuryHeight / 2;
+            context.drawImage(mercury, mercuryX, mercuryY, mercuryWidth, mercuryHeight);
+            //venus
+            const venusX = sunX + sunWidth / 2 + venusOrbitRadius * Math.cos(venusAngle) - venusWidth / 2;
+            const venusY = sunY + sunHeight / 2 + venusOrbitRadius * Math.sin(venusAngle) - venusHeight / 2;
+            context.drawImage(venus, venusX, venusY, venusWidth, venusHeight);
+            //earth
+            const earthX = sunX + sunWidth / 2 + earthOrbitRadius * Math.cos(earthAngle) - earthWidth / 2;
+            const earthY = sunY + sunHeight / 2 + earthOrbitRadius * Math.sin(earthAngle) - earthHeight / 2;
+            context.drawImage(earth, earthX, earthY, earthWidth, earthHeight);
+            //mars
+            const marsX = sunX + sunWidth / 2 + marsStuff[2] * Math.cos(marsAngle) - marsStuff[0] / 2;
+            const marsY = sunY + sunHeight / 2 + marsStuff[2] * Math.sin(marsAngle) - marsStuff[1] / 2;
+            context.drawImage(mars, marsX, marsY, marsStuff[0], marsStuff[1]);
+            //jupiter
+            const jupiterX = sunX + sunWidth / 2 + jupiterStuff.jupiterOrbitRadius * Math.cos(jupiterAngle) - jupiterStuff.jupiterWidth / 2;
+            const jupiterY = sunY + sunHeight / 2 + jupiterStuff.jupiterOrbitRadius * Math.sin(jupiterAngle) - jupiterStuff.jupiterHeight / 2;
+            context.drawImage(jupiter, jupiterX, jupiterY, jupiterStuff.jupiterWidth, jupiterStuff.jupiterHeight);
+            //saturn
+            const saturnX = sunX + sunWidth / 2 + saturnStuff.saturnOrbitRadius * Math.cos(saturnAngle) - saturnStuff.saturnWidth / 2;
+            const saturnY = sunY + sunHeight / 2 + saturnStuff.saturnOrbitRadius * Math.sin(saturnAngle) - saturnStuff.saturnHeight / 2;
+            context.drawImage(saturn, saturnX, saturnY, saturnStuff.saturnWidth, saturnStuff.saturnHeight);
+            //uranus
+            const uranusX = sunX + sunWidth / 2 + uranusOrbitRadius * Math.cos(uranusAngle) - uranusWidth / 2;
+            const uranusY = sunY + sunHeight / 2 + uranusOrbitRadius * Math.sin(uranusAngle) - uranusHeight / 2;
+            context.drawImage(uranus, uranusX, uranusY, uranusWidth, uranusHeight);
+            //neptune
+            const neptuneX = sunX + sunWidth / 2 + neptuneOrbitRadius * Math.cos(neptuneAngle) - neptuneWidth / 2;
+            const neptuneY = sunY + sunHeight / 2 + neptuneOrbitRadius * Math.sin(neptuneAngle) - neptuneHeight / 2;
+            context.drawImage(neptune, neptuneX, neptuneY, neptuneWidth, neptuneHeight);
+
+        }
+        function animateOrbit() {
+            if (!orbiting) {
+                return;
+            }
+            mercuryAngle += 0.007;
+            venusAngle += 0.005;
+            earthAngle += 0.004;
+            marsAngle += 0.005;
+            jupiterAngle += 0.002;
+            saturnAngle += 0.004;
+            uranusAngle += 0.005;
+            neptuneAngle += 0.004;
+            draw();
+            animationId = requestAnimationFrame(animateOrbit);
+        }
+
+
+        // orbitos pradejimo ir sustabdymo mygtukas
+        document.getElementById("toggleOrbit").addEventListener("click", function () {
+            orbiting = !orbiting;
+            if (orbiting) {
+                animateOrbit();
+            } else {
+                orbiting = false;
+                cancelAnimationFrame(animationId); 
+                draw();
+            }
+        });
+
+
+    </script>
+</body>
+
+</html>

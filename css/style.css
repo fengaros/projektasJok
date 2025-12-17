@@ -1,0 +1,108 @@
+/* font */
+
+.orbitron {
+    font-family: "Orbitron", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+}
+/*kadangi btn yra bootstrap klase, ir ten jau yra front-family tai ji gauna priority
+tai pasidarau kad mano sriftas butu !important nepametant bootstrap button savybiu*/
+button.orbitron, .btn.orbitron {
+    font-family: "Orbitron", sans-serif !important;
+}
+
+/* header dalis */
+.head {
+    width: 100%;
+    background-color: rgb(4, 1, 15);
+    height: 75px;
+    color: aliceblue;
+}
+
+.p1 {
+    flex: 6;
+}
+
+.p2 {
+    flex: 1;
+}
+
+/* main dalis*/
+.main {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+
+canvas#solarSystem {
+    width: 95vw;
+    height: 100%;
+    background-color: #000000;
+    grid-area: 1 / 2 / 6 / 11;
+}
+
+.sidebar {
+    grid-area: 1 / 1 / 6 / 2;
+    background-color: rgb(4, 1, 15);
+    width: 5vw;
+}
+button.orbitron {
+    white-space: nowrap;
+    overflow: hidden;
+    
+}
+.informationScreen{
+    width: 95vw;
+    height: 100vh;
+    background-color: #000000;
+    grid-area: 1 / 2 / 6 / 11;
+    display: flex;
+    justify-content: center;
+}
+.objekt{
+    flex: 1;
+}
+table, th, td{
+    margin-top: 200px;
+    margin-left: 50px;
+    min-height: 50px;
+    min-width: 150px;
+    border: 1px solid white;
+    background-color: #000000;
+    color: white;
+}
+.imgz{
+    width: 500px;
+    height: 500px;
+}
+#proxima {
+    color: rgb(82, 255, 2);
+}
+.table{
+    display: block;
+}
+.phobosDeimos{
+    float: right;
+    max-width: 570px;
+}
+#wikiLink{
+    background-color:#000000;
+    color: rgb(30, 255, 0);
+}
+.semantiks{
+    background-color: #000000;
+    color: #ffffff;
+    margin: 0 0 1rem 0;
+}
+.phobosDeimos section {
+    background-color: #000000;
+    color: #ffffff;
+    padding: 1.5rem;
+}
+.newNeptuneMoons{
+    border: 1px solid rgb(135, 57, 238);
+    color: #ffffff;   
+}

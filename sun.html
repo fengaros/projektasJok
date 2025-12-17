@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sun</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!--font-->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
+        /*pseudo klase*/
+        div button:last-child{
+            border: 1px solid red;
+        }
+    </style>
+</head>
+
+<body>
+    <!--linkin js file-->
+    <script src="js/jsfile.js"></script>
+    <!--head part-->
+    <div class="d-flex head align-items-center justify-content-center">
+        <p class="p1 h1 orbitron">Interactive Solar System</p>
+        <p class="p2 orbitron">Made by: Jokūbas Šemeklis</p>
+    </div>
+    <!--main part-->
+    <div class="main">
+        <div class="informationScreen">
+
+            <div class="table">
+                <table class="table-bordered">
+                    <tr>
+                        <th class="fw-bold text-white">Star class</th>
+                        <th class="fw-bold text-white">age</th>
+                        <th class="fw-bold text-white">radius</th>
+                        <th class="fw-bold text-white">color</th>
+                        <th class="fw-bold text-white">temperature</th>
+                        <th class="fw-bold text-white">distance from Earth</th>
+                    </tr>
+                    <tr id="sunRow">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td colspan="6" id="proxima">Closest star to our sun is Proxima Centauri which is 4.24 light years away
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="objekt"><img class="imgz" src="img/sunImg.png" alt="meow"></div>
+        </div>
+        <div class="sidebar">
+            <button class="text-white btn orbitron" onclick="mainPage()">Main page</button>
+            <button class="text-white btn orbitron" onclick="openPage('sun')">Sun</button>
+            <button class="text-white btn orbitron" onclick="openPage('mercury')">Mercury</button>
+            <button class="text-white btn orbitron" onclick="openPage('venus')">Venus</button>
+            <button class="text-white btn orbitron" onclick="openPage('earth')">Earth</button>
+            <button class="text-white btn orbitron" onclick="openPage('mars')">Mars</button>
+            <button class="text-white btn orbitron" onclick="openPage('jupiter')">Jupiter</button>
+            <button class="text-white btn orbitron" onclick="openPage('saturn')">Saturn</button>
+            <button class="text-white btn orbitron" onclick="openPage('uranus')">Uranus</button>
+            <button class="text-white btn orbitron" onclick="openPage('neptune')">Neptune</button>
+            <button class="text-white btn orbitron" onclick="addData()">Sun data</button>
+        </div>
+    </div>
+</body>
+</html>
